@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .box {
+            border: 1px solid #ddd;
+            /* height: 70px; */
+            /*清除浮动*/
+            /* overflow: auto; */
+        }
+        .clear::after {
+            display: block;
+            content: '';
+            clear: both;
+            height: 0;
+        }
+        .left {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: #a3e4aa;
+        }
+        .right {
+            float: right;
+            width: 200px;
+            height: 200px;
+            background: #aae3e2;
+        }
+        /* h1 {
+            clear: both;
+        } */
+    </style>
+    <div class="box clear">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+
+    <style>
+        .gradient {
+            margin-left: -100px;
+            height: 500px;
+            width: 500px;
+            /* background: linear-gradient(red,green) */
+            /* background: linear-gradient(to right,red,green) */
+            /* background: linear-gradient(to top right,red,green) */
+            /* background: linear-gradient(90deg,red,green,blue) */
+            /* background: repeating-linear-gradient(to top right,red 10%,green 20%) */
+            /* background: linear-gradient(to top right,rgba(233,0,0,0),rgba(233,0,0,1)) */
+            background: radial-gradient(ellipse,red,green)
+        }
+    </style>
+    <h2>渐变色</h2>
+    <div class="gradient"></div>
+
+    <style>
+        .transform {
+            width: 100px;
+            height: 100px;
+            background: #a3e4aa;
+            text-align: center
+        }
+        .transform:hover {
+            transition: transform 2s;
+
+            /* transform: translate(100px,100px); */
+            /* transform: translateZ(100px); 无显示  */
+            /* transform: rotateX(50deg); */
+            /* transform: rotateY(50deg) */
+            /* transform: rotateZ(50deg); */
+            /* transform: rotate(90deg); */
+            /* transform: rotate3d(50deg,100deg, 90deg,80deg) 无显示 */
+            /* transform: scale(2,3); */
+            /* transform: skewX(30deg); */
+            /* transform: skewY(180deg); */
+            /* transform: skew(30deg,90deg); */
+
+            background: red;
+            transition: background 2s ease-in-out;
+        }
+    </style>
+    <h2>转换&过渡-transform&transition</h2>
+    <div class="transform">
+        你看的见吗？
+    </div>
+
+    <style>
+        .animation {
+            height: 200px;
+            width: 200px;
+
+            animation-name: backAnimation;
+            animation-duration: 10s;
+            animation-timing-function: ease;
+            animation-delay: 2s; 
+            animation-iteration-count: 2;
+            animation-direction: alternate-reverse
+        }
+        .animation:hover {
+            animation-play-state: paused
+        }
+
+        @keyframes backAnimation {
+            0% {background: rgba(222, 0, 0, .2)}
+            10% {background: rgba(222, 0, 0, .5)}
+            20% {background: rgba(222, 0, 0, 1)}
+            30% {background: rgba(222, 0, 0, .5)}
+            40% {background: rgba(0, 222, 0, .2)}
+            50% {background: rgba(0, 222, 0, .5)}
+            60% {background: rgba(0, 222, 0, 1)}
+            70% {background: rgba(0, 222, 0, .5)}
+            80% {background: rgba(0, 0, 222, .2)}
+            90% {background: rgba(0, 0, 222, .5)}
+            100% {background: rgba(0, 0, 222, 1)}
+        }
+    </style>
+    <h2>动画</h2>
+    <div class="animation"></div>
+
+    <style>
+        .card {
+            width: 90%;
+            display: flex;
+            margin: 0 auto;
+        }
+        .item {
+            width: 12.5%;
+            height: 200px;
+            flex: 0 1 auto;
+
+            writing-mode: vertical-lr;
+            letter-spacing: 10px;
+
+            text-align: center;
+            display: flex;
+            justify-content: center;
+
+            transition: width .5s;
+        }
+        h3 {
+            margin:  0 auto;
+            text-align: center;
+            color: #ccc;
+            /* writing-mode: vertical-lr; */
+        }
+        .item:hover {
+            width: 25%;
+        }
+        .item1 {
+            background: #a3e4aa
+        }
+        .item2 {
+            background: #a32191
+        }
+        .item3 {
+            background: #332222;
+        }
+        .item4 {
+            background: #2228db;
+        }
+        .item5 {
+            background: #a23;
+        }
+        .item6 {
+            background: #a3e;
+        }
+        .item7 {
+            background: #a72;
+        }
+        .item8 {
+            background: #b22;
+        }
+    </style>
+    <h2>卡片</h2>
+    <div class="card">
+        <div class="item item1">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item2">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item3">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item4">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item5">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item6">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item7">
+            <h3>你还在</h3>
+        </div>
+        <div class="item item8">
+            <h3>你还在</h3>
+        </div>
+    </div>
+
+    <style>
+        .nav {
+            overflow: hidden;
+            list-style: none;
+        }
+        .nav-item {
+            float: left;
+            width: 150px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            
+            position: relative;
+
+            /* border: 1px solid #ddd; */
+        }
+        .nav-item::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 75px;
+            width: 100%;
+            height: 80px;
+            z-index: -1;
+            transition: .4s all ease-in-out;
+        }
+        .nav-item:hover::after{
+            top: 0;
+        }
+        .nav-item1::after {
+            background: #a3e;
+        }
+        .nav-item2::after {
+            background:  #a23;
+        }
+        .nav-item3::after {
+            background:  #a3e4aa;
+        }
+        .nav-item4::after {
+            background:  #2228db;
+        }
+        .nav-item5::after {
+            background:  #a4a4a4;
+        }
+        .nav-item6::after {
+            background:  #a72;
+        }
+        .nav-item7::after {
+            background:  #a3e;
+        }
+
+    </style>
+    <h2>nav动画</h2>
+    <ul class="nav">
+        <li class="nav-item nav-item1">蛋蛋</li>
+        <li class="nav-item nav-item2">蛋蛋</li>
+        <li class="nav-item nav-item3">蛋蛋</li>
+        <li class="nav-item nav-item4">蛋蛋</li>
+        <li class="nav-item nav-item5">蛋蛋</li>
+        <li class="nav-item nav-item6">蛋蛋</li>
+        <li class="nav-item nav-item7">蛋蛋</li>
+    </ul>
+
+    <style>
+        .switch {
+            width: 200px;
+            height: 100px;
+            border-radius: 100px;
+            padding: 0 10px;
+            background: #a3e4aa;
+            display: flex;
+            align-items: center;
+            transition: background 2s;
+        }
+        .switch-ball {
+            width: 80px;
+            height: 80px;
+            border-radius: 80px;
+            background: #fff;
+            transition: transform 2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .switch-ball-heart {
+            width: 70px;
+            height: 70px;
+            border-radius: 70px;
+            background: #a23;
+
+            transition: background 2s;
+        }
+        .switch:hover .switch-ball {
+            transform: translateX(120px)
+        }
+        .switch:hover {
+            background: #a23
+        }
+        .switch:hover .switch-ball-heart {
+            background: #a3e4aa
+        }
+    </style>
+    <h2>切换开关</h2>
+    <div class="switch">
+        <div class="switch-ball">
+            <div class="switch-ball-heart"></div>
+        </div>
+    </div>
+
+    <style>
+        .button {
+            margin: 50px;
+            display: block;
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 4px 4px 8px #999;
+            color: white;
+            font-size: 50px;
+            background: linear-gradient(to bottom right, #5629db, #9933c9);
+            transition: transform 1s;
+        }
+        .button:hover {
+            transform: rotateX(20deg) rotateY(20deg)
+        }
+    </style>
+    <h2>动态按钮</h2>
+    <a class="button">CLICK ME</a>
+
+
+    <style>
+        .ribbon {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 80px;
+        }
+        .ribbon>div {
+            width: 100px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background: #a72;
+            color: #eee;
+            margin-left: 35px;
+            position: relative;
+        }
+        .ribbon>div::before, .ribbon>div::after {
+            content: '';
+            width: 20px;
+            height: 100%;
+            background: inherit;
+            position: absolute;
+            top: 0;
+        }
+        .ribbon>div::before {
+            /* left: -40px; */
+            right: 100%;
+        }
+        .ribbon>div::after {
+            /* right: -40px; */
+            left: 100%;
+        }
+        .ribbon>div:hover {
+            z-index: 100;
+            box-shadow: 0 4px 10px 0 #666;
+            transition: all .2s;
+            transform: translateY(-11.55px)
+        }
+
+        .ribbon>div:hover::before,.ribbon>div:hover::after{
+            /* top: 5.78px; */
+            height: 88%;
+            background: rgb(133, 93, 25);
+            /* width: 15px; */
+            transition: all .2s;
+        }
+        .ribbon>div:hover::before {
+            transform: rotate(-30deg) skewX(-30deg) translate(3px,10px);
+        }
+        .ribbon>div:hover::after {
+            transform: rotate(30deg) skewX(30deg) translate(-3px,10px);
+        }
+    </style>
+    <h2>飘带状3D菜单</h2>
+    <article class="ribbon">
+        <div>菜单1</div>
+        <div>菜单2</div>
+        <div>菜单3</div>
+        <div>菜单4</div>
+    </article>
+</body>
+</html>

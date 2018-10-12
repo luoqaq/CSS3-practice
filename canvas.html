@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas使用</title>
+</head>
+<body>
+    
+    <style>
+        @keyframes rotate {
+            from {transform: rotate(0)}
+            to {transform: rotate(360deg)}
+        }
+        .liangyi {
+            width: 400px;
+            height: 400px;
+            margin-left: 100px;
+            border-radius: 100%;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+
+            box-shadow: 0 0 20px #333;
+        }
+        .liangyi::after {
+            content: '';
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            /* background: red; */
+            left: 0;
+            top: 0;
+            box-shadow: 8px 8px 3px #666;
+        }
+        .liangyi:hover {
+            animation: rotate 1s infinite linear;
+        }
+        .liangyi-top,.liangyi-bot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            border: 2px solid #333;
+            transform: rotate(45deg);
+        }
+        .liangyi-top {
+            background: #fff;
+            border-color: transparent transparent #333 #333;
+        }
+        .liangyi-bot {
+            background: #333;
+            border-color: #333 #333 transparent transparent; 
+        }
+        .top-heart, .bot-heart{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+        }
+        .top-heart {
+            background: #333;
+        }
+        .bot-heart {
+            background: #fff;
+        }
+        .back-color {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 0;
+            background: #333;
+            z-index: -100;
+        }
+    </style>
+    <h2>两仪</h2>
+    <div class="liangyi">
+        <div class="liangyi-top">
+            <div class="top-heart"></div>
+        </div>
+        <div class="liangyi-bot">
+            <div class="bot-heart"></div>
+        </div>
+        <div class="back-color"></div>
+    </div>
+
+    <h2>两仪-canvas</h2>
+    <canvas id="liangyi" style="border:3px solid #333; border-radius: 100%;" width="400" height="400">
+        不支持canvas
+    </canvas>
+    <script>
+        let liangyi = document.getElementById('liangyi')
+        let context = liangyi.getContext('2d')
+        
+        // 画出左边的黑色
+        context.beginPath()
+        context.arc(200,200,200, Math.PI/2, Math.PI*1.5)
+        context.fillStyle = '#333'
+        context.fill()
+
+        // 画上面的弧，再画上面的元
+        context.beginPath();
+        context.arc(200,100, 100, Math.PI/2, 3*Math.PI/2)
+        context.fillStyle = '#fff'
+        context.fill()
+
+        context.beginPath();
+        context.arc(200,100, 30, 0, 2*Math.PI)
+        context.fillStyle = '#333'
+        context.fill()
+
+        // 画下面的弧，再画下面的元
+        context.beginPath();
+        context.arc(200,300, 100, Math.PI*1.5, Math.PI/2)
+        context.fillStyle = '#333'
+        context.fill()
+
+        context.beginPath();
+        context.arc(200,300, 30,0, 2*Math.PI)
+        context.fillStyle = '#fff'
+        context.fill() 
+
+    </script>
+
+    <style>
+        .form input{
+            width: 30px;
+            height: 30px;
+        }
+        #circlePercent {
+            margin-left: 200px;
+            color: rgba(128, 160, 179, 0.295);
+        }
+    </style>
+    <h2>三个圆环-百分比动态显示</h2>
+    <form class="form" id="form">
+        <label for="c1">第一个子</label>
+        <input id="c1" value="80" />%
+        <label for="c2">第二个子</label>
+        <input id="c2" value="50" />%
+    </form>
+    <canvas id="circlePercent" width="400" height="400"></canvas>
+    <script>
+        var cirCtx = document.getElementById('circlePercent').getContext('2d');
+        var c1Value = 80, c2Value = 50;
+
+        // 将弧线的线宽设置的宽点，就是环
+        var cirList = [
+            {
+                color: 'rgba(46, 77, 179, 0.295)',
+                width: 40,
+                r: 100,
+                start: 0,
+                end: Math.PI * 2
+            },
+            {
+                color: 'rgb(30, 104, 146)',
+                width: 37,
+                r: 105,
+                start: Math.PI*69/36,
+                end: Math.PI*69/36 + Math.PI*2*c1Value/100
+            },
+            {
+                color: 'rgb(128, 160, 179)',
+                width: 37,
+                r: 110,
+                start: 0,
+                end: Math.PI*2*c2Value/100
+            }
+        ]
+        
+        function draw (cirCtx, cirList) {
+            for (var i = 0, len = cirList.length; i < len; i++) {
+                cirCtx.beginPath();
+                cirCtx.arc(200, 200, cirList[i].r, cirList[i].start, cirList[i].end);
+                cirCtx.lineWidth = cirList[i].width
+                cirCtx.strokeStyle = cirList[i].color;
+                cirCtx.shadowColor = '#999';
+                cirCtx.shadowBlur = 20;
+                cirCtx.stroke();
+            }
+        }
+        draw(cirCtx, cirList)
+
+        var c1 = document.getElementById('c1')
+        var c2 = document.getElementById('c2')
+        
+        form.addEventListener('change',function(e){
+            if (e.target == c1) {
+                cirList[1].end = cirList[1].start + Math.PI * 2 * e.target.value /100;
+            } else {
+                cirList[2].end = cirList[2].start + Math.PI * 2 * e.target.value /100;
+            }
+            cirCtx.clearRect(0, 0, 400, 400)
+            draw(cirCtx,cirList)
+        })
+    </script>
+</body>
+</html>
