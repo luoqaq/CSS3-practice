@@ -4,6 +4,7 @@ just practice
 
 # canvas.html
 太极图
+多层百分比环状图（根据输入的百分比动态变化）
 
 # cssTest.html
 手风琴式卡片   
