@@ -1,5 +1,5 @@
 # CSS3-practice
-just practice
+just practice\n
 此仓库用来存放我的CSS3的学习
 
 # canvas.html
